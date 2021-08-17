@@ -7,6 +7,9 @@ import numpy as np
 from ingest import Ingest
 from transform.transform import Transform
 from persist import Persist
+from transform.transform_util import Transform_Util
+
+
 class Pipeline:
     def run(src):
         #ingesting
@@ -14,7 +17,8 @@ class Pipeline:
         ingested_data = ingest.ingest('ISO-8859-1')
 
         #transforming
-        transform = Transform(ingested_data)
+        ts_util = Transform_Util(ingested_data)
+        transform = Transform(ts_util)
         #start process
         transformed_data = transform.process()
         #overview_info = transform.overview_data()
